@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.xyz</groupId>
+        <artifactId>xyz-spring-boot-starter-parent</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+        <!-- 或许报错，请忽略，这里只是作为Maven的一个标志，在搜索本地和远程存储库之前，首先搜索项目的父库的路径 -->
+        <relativePath>../../xyz-third-party-lib-arbitrament/xyz-spring-boot-starter-parent</relativePath>
+    </parent>
+
+    <groupId>cn.xyz</groupId>
+    <artifactId>java-utils</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.prometheus</groupId>
+            <artifactId>simpleclient_common</artifactId>
+        </dependency>
+    </dependencies>
+</project>
