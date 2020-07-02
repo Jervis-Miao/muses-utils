@@ -1,7 +1,7 @@
 /*
  * Copyright 2013 Focus Technology, Co., Ltd. All rights reserved.
  */
-package cn.xyz.utils;
+package cn.muses.utils.ip;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;

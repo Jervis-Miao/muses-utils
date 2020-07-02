@@ -2,7 +2,7 @@
  * Copyright 2019 All rights reserved.
  */
 
-package cn.xyz.utils;
+package cn.muses.utils.unsafe;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-import cn.xyz.demo.Data;
 import sun.misc.Unsafe;
 
 /**
@@ -36,7 +35,7 @@ public class UnsafeFactory {
                     Class<?> clazz = Unsafe.class;
                     Field f = clazz.getDeclaredField("theUnsafe");
                     f.setAccessible(true);
-                    instance = (Unsafe)f.get(clazz);
+                    instance = (Unsafe) f.get(clazz);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -103,7 +102,7 @@ public class UnsafeFactory {
     private static void objectOperate() throws NoSuchFieldException, InstantiationException, IOException,
         NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         // 调用allocateInstance函数避免了在我们不需要构造函数的时候却调用它
-        Data data = (Data)instance.allocateInstance(Data.class);
+        Data data = (Data) instance.allocateInstance(Data.class);
         data.setId(1L);
         data.setName("unsafe");
         System.out.println(data);
@@ -118,9 +117,9 @@ public class UnsafeFactory {
         /**
          * 我们可以在运行时创建一个类，比如从已编译的.class文件中。将类内容读取为字节数组， 并正确地传递给defineClass方法；当你必须动态创建类，而现有代码中有一些代理， 这是很有用的
          */
-        File file = new File("D:\\workspace\\java-utils\\src\\main\\java\\cn\\xyz\\demo\\Data.java");
+        File file = new File("D:\\workspace\\muses-utils\\src\\main\\java\\cn\\xyz\\demo\\Data.java");
         FileInputStream input = new FileInputStream(file);
-        byte[] content = new byte[(int)file.length()];
+        byte[] content = new byte[(int) file.length()];
         input.read(content);
         Class c = instance.defineClass(null, content, 0, content.length, null, null);
         c.getMethod("getId").invoke(c.newInstance(), null);
@@ -134,7 +133,7 @@ public class UnsafeFactory {
         // 分配一个8byte的内存
         long address = instance.allocateMemory(8L);
         // 初始化内存填充1
-        instance.setMemory(address, 8L, (byte)1);
+        instance.setMemory(address, 8L, (byte) 1);
         // 测试输出
         System.out.println("add byte to memory:" + instance.getInt(address));
         // 设置0-3 4个byte为0x7fffffff

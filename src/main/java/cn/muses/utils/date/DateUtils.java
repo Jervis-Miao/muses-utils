@@ -2,7 +2,7 @@
  * Copyright 2019 All rights reserved.
  */
 
-package cn.xyz.utils;
+package cn.muses.utils.date;
 
 import java.text.ParseException;
 import java.text.ParsePosition;

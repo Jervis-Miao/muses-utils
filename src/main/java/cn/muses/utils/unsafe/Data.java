@@ -2,7 +2,7 @@
 Copyright 2019 All rights reserved.
  */
 
-package cn.xyz.demo;
+package cn.muses.utils.unsafe;
 
 import java.io.Serializable;
 

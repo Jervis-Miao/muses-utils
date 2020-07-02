@@ -2,20 +2,19 @@
 Copyright 2019 All rights reserved.
  */
 
-package cn.xyz.demo;
+package cn.muses.utils.unsafe;
 
 import java.lang.reflect.Field;
 
-import cn.xyz.utils.UnsafeFactory;
 import sun.misc.Unsafe;
 
 /**
  * Java数组大小的最大值为Integer.MAX_VALUE。使用直接内存分配，我们创建的数组大小受限于堆大小； 实际上，<br/>
  * 这是堆外内存（off-heap memory）技术，在java.nio包中部分可用；
- * 
+ *
  * 这种方式的内存分配不在堆上，且不受GC管理，所以必须小心Unsafe.freeMemory()的使用。<br/>
  * 它也不执行任何边界检查，所以任何非法访问可能会导致JVM崩溃
- * 
+ *
  * @author miaoqiang
  * @date 2020/3/10.
  */
