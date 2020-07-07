@@ -32,7 +32,7 @@ public class ExcelReaderTest {
         List<CashValueDTO> list = poi.parse(filePath, sheetIndex, rowStartNum, rowEndNum);
         Map<String, List<CashValueDTO>> format = (Map<String, List<CashValueDTO>>) poi.format(list);
         format.keySet().forEach(k -> {
-            System.out.println(String.format("%s: %s", k, format.get(k)));
+            System.out.println(String.format("%s: \"%s\"", k, format.get(k)));
         });
         // 解析职业
         // poi.getJobInfo(list);

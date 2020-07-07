@@ -103,8 +103,8 @@ public class CashValueDTO implements Serializable {
     @Override
     public String toString() {
         return new StringBuilder("[")
-            .append(String.format("\"%s\", ", poly))
-            .append(String.format("\"%s\"", cv))
+            .append(String.format("\"\"%s\"\", ", poly))
+            .append(String.format("\"\"%s\"\"", cv))
             .append("]")
             .toString();
     }
