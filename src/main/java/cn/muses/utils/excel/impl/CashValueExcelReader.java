@@ -4,7 +4,10 @@
 
 package cn.muses.utils.excel.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import cn.muses.utils.excel.AbstractExcelReader;
 import cn.muses.utils.excel.dto.CashValueDTO;
@@ -13,10 +16,10 @@ import cn.muses.utils.excel.dto.CashValueDTO;
  * @author miaoqiang
  * @date 2020/7/2.
  */
-public class CashValueExcelReader extends AbstractExcelReader<CashValueDTO> {
+public class CashValueExcelReader extends AbstractExcelReader<CashValueDTO, Map<String, List<CashValueDTO>>> {
 
     @Override
-    public <R> R format(List<CashValueDTO> data) {
+    public Map<String, List<CashValueDTO>> format(List<CashValueDTO> data) {
         final Map<String, List<CashValueDTO>> dataMap = new LinkedHashMap<>(512);
         data.forEach(d -> {
             String key =
@@ -30,6 +33,6 @@ public class CashValueExcelReader extends AbstractExcelReader<CashValueDTO> {
             categorized.add(d);
         });
 
-        return (R) dataMap;
+        return dataMap;
     }
 }

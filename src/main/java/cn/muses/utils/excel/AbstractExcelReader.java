@@ -25,7 +25,7 @@ import cn.muses.utils.generic.GenericUtil;
  * @author miaoqiang
  * @date 2020/4/8.
  */
-public abstract class AbstractExcelReader<T> implements IExcelReader<T> {
+public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
     /**
      * 总行数
      */

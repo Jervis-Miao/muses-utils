@@ -4,18 +4,34 @@
 
 package cn.muses.utils;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
+
 import cn.muses.utils.excel.IExcelReader;
 import cn.muses.utils.excel.dto.CashValueDTO;
+import cn.muses.utils.excel.dto.PackDTO;
 import cn.muses.utils.excel.impl.CashValueExcelReader;
+import cn.muses.utils.excel.impl.PackExcelReader;
 
 /**
  * @author miaoqiang
  * @date 2020/7/2.
  */
 public class ExcelReaderTest {
+
+    @Test
+    public void packTest() throws IOException {
+        IExcelReader poi = new PackExcelReader();
+        String filePath = "C:\\Users\\miaoqiang\\Desktop\\7.8最终版【wap站改版】产品要素整理.xlsx";
+        int sheetIndex = 0;
+        int rowStartNum = 1;
+        int rowEndNum = 229;
+        poi.format(poi.parse(filePath, sheetIndex, rowStartNum, rowEndNum));
+    }
 
     /**
      * Excel表格解析测试

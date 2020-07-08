@@ -13,7 +13,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author miaoqiang
  * @date 2020/7/2.
  */
-public interface IExcelReader<T> {
+public interface IExcelReader<T, R> {
 
     /**
      * 读取Excel，并逐行转化为对象
@@ -30,10 +30,9 @@ public interface IExcelReader<T> {
      * 格式化数据
      *
      * @param data
-     * @param <R>
      * @return
      */
-    public default <R> R format(List<T> data) {
-        return null;
+    public default R format(List<T> data) {
+        return (R) data.toString();
     }
 }
