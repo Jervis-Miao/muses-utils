@@ -2,9 +2,9 @@
  * Copyright 2019 All rights reserved.
  */
 
-package cn.muses.utils.excel.impl;
+package cn.muses.utils.file.read.excel.impl;
 
-import cn.muses.utils.excel.AbstractExcelReader;
+import cn.muses.utils.file.read.excel.AbstractExcelReader;
 
 import java.util.List;
 

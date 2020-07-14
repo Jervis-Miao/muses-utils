@@ -2,12 +2,12 @@
  * Copyright 2019 All rights reserved.
  */
 
-package cn.muses.utils.excel.dto;
+package cn.muses.utils.file.read.excel.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import cn.muses.utils.excel.Cell;
+import cn.muses.utils.file.read.excel.Cell;
 
 /**
  * @author miaoqiang

@@ -1,4 +1,4 @@
-package cn.muses.utils.excel;
+package cn.muses.utils.file.read.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -78,7 +78,7 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
                 final Field[] fields = type.getDeclaredFields();
                 for (int i = 0; i < fields.length; i++) {
                     final Field field = fields[i];
-                    final cn.muses.utils.excel.Cell annotation = field.getAnnotation(cn.muses.utils.excel.Cell.class);
+                    final cn.muses.utils.file.read.excel.Cell annotation = field.getAnnotation(cn.muses.utils.file.read.excel.Cell.class);
                     if (annotation == null) {
                         continue;
                     }

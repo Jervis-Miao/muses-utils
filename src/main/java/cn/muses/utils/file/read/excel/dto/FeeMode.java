@@ -1,4 +1,4 @@
-package cn.muses.utils.excel.dto;
+package cn.muses.utils.file.read.excel.dto;
 
 public class FeeMode implements Cloneable {
 

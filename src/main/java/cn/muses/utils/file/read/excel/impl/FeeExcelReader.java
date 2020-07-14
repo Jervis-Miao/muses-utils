@@ -2,15 +2,15 @@
  * Copyright 2019 All rights reserved.
  */
 
-package cn.muses.utils.excel.impl;
+package cn.muses.utils.file.read.excel.impl;
 
 import java.util.*;
 
-import cn.muses.utils.excel.AbstractExcelReader;
+import cn.muses.utils.file.read.excel.AbstractExcelReader;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
-import cn.muses.utils.excel.dto.FeeMode;
+import cn.muses.utils.file.read.excel.dto.FeeMode;
 
 /**
  * @author miaoqiang
