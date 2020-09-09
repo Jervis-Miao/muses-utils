@@ -102,6 +102,7 @@
                 </configuration>
             </plugin>
 
+            <!-- 打包源码 -->
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
