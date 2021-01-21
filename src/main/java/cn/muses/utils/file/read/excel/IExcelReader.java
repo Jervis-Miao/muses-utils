@@ -4,6 +4,8 @@
 
 package cn.muses.utils.file.read.excel;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Sheet;
@@ -34,5 +36,15 @@ public interface IExcelReader<T, R> {
      */
     public default R format(List<T> data) {
         return (R) data.toString();
+    }
+
+    /**
+     * 输出到指定文件
+     *
+     * @param fileWriter
+     * @param data
+     */
+    public default void readToFile(FileWriter fileWriter, String data) throws IOException {
+        return;
     }
 }

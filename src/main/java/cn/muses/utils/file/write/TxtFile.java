@@ -34,7 +34,7 @@ public class TxtFile implements IFileWrite<File> {
         write(outFile, data);
     }
 
-    private static final void write(File outFile, File inFile) {
+    private final void write(File outFile, File inFile) {
         if (inFile.isDirectory()) {
             final File[] files = inFile.listFiles();
             Arrays.stream(files).forEach(f -> write(outFile, f));

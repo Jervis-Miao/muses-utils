@@ -4,9 +4,11 @@
 
 package cn.muses.utils;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -39,15 +41,33 @@ public class ExcelReaderTest {
      */
     public static void main(String[] args) throws Exception {
         IExcelReader poi = new CashValueExcelReader();
-        String filePath = "C:\\Users\\miaoqiang\\Downloads\\心相随资料\\04-2_爱心人寿心相随年金保险现金价值全表.xlsx";
-        int sheetIndex = 0;
-        int rowStartNum = 3;
-        int rowEndNum = 20930;
-        List<CashValueDTO> list = poi.parse(filePath, sheetIndex, rowStartNum, rowEndNum);
+        String inFilePath = "C:\\Users\\miaoqiang\\Desktop\\EPB利益演示.xlsx";
+        String outFilePath = "C:\\Users\\miaoqiang\\Desktop\\EPB利益演示.txt";
+        int sheetIndex = 1;
+        int rowStartNum = 4;
+        int rowEndNum = 185530;
+        List<CashValueDTO> list = poi.parse(inFilePath, sheetIndex, rowStartNum, rowEndNum);
         Map<String, List<CashValueDTO>> format = (Map<String, List<CashValueDTO>>) poi.format(list);
-        format.keySet().forEach(k -> {
-            System.out.println(String.format("%s: \"%s\"", k, format.get(k)));
-        });
+        FileWriter fw = new FileWriter(outFilePath);
+        try {
+            int i = 0;
+            final Set<String> keySet = format.keySet();
+            for (String k : keySet) {
+                System.out.println("当前第：" + i + "行");
+                i++;
+                poi.readToFile(fw, String.format("%s: \"%s\"", k, format.get(k)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fw) {
+                    fw.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         // 解析职业
         // poi.getJobInfo(list);
         // 解析费率

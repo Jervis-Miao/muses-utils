@@ -78,7 +78,8 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
                 final Field[] fields = type.getDeclaredFields();
                 for (int i = 0; i < fields.length; i++) {
                     final Field field = fields[i];
-                    final cn.muses.utils.file.read.excel.Cell annotation = field.getAnnotation(cn.muses.utils.file.read.excel.Cell.class);
+                    final cn.muses.utils.file.read.excel.Cell annotation =
+                        field.getAnnotation(cn.muses.utils.file.read.excel.Cell.class);
                     if (annotation == null) {
                         continue;
                     }
@@ -102,7 +103,7 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
                         }
                         value = new BigDecimal(cellValue);
                     } else if (fieldType.isAssignableFrom(String.class)) {
-                        value = cellValue;
+                            value = cellValue;
                     } else {
                         continue;
                     }
@@ -110,8 +111,10 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
                 }
                 return instance;
             } catch (InstantiationException e) {
+                System.out.println(e);
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
+                System.out.println(e);
                 e.printStackTrace();
             }
 
@@ -236,7 +239,7 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
         Sheet sheet = wb.getSheetAt(sheetIndex);
 
         // 得到Excel指定sheet的行数
-        this.totalRows = sheet.getPhysicalNumberOfRows();
+        this.totalRows = Math.max(sheet.getPhysicalNumberOfRows(), sheet.getLastRowNum());
 
         // 得到Excel起始行的列数
         Row startRow;
@@ -245,7 +248,7 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
         }
 
         /** 循环Excel的行 */
-        for (int r = rowStartNum; r < this.totalRows && r <= rowEndNum; r++) {
+        for (int r = rowStartNum; r <= this.totalRows && r <= rowEndNum; r++) {
             Row row = sheet.getRow(r);
             if (row == null) {
                 continue;
@@ -253,39 +256,40 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
             List<String> rowLst = new ArrayList<>();
             /** 循环Excel的列 */
             for (int c = 0; c < this.totalCells; c++) {
-                Cell cell = row.getCell(c);
+                Cell cell;
+                if (null == (cell = row.getCell(c))) {
+                    continue;
+                }
                 String cellValue = "";
-                if (null != cell) {
-                    // 以下是判断数据的类型
-                    switch (cell.getCellType()) {
-                        // 数字
-                        case HSSFCell.CELL_TYPE_NUMERIC:
-                            cellValue = cell.getNumericCellValue() + "";
-                            break;
-                        // 字符串
-                        case HSSFCell.CELL_TYPE_STRING:
-                            cellValue = cell.getStringCellValue();
-                            break;
-                        // Boolean
-                        case HSSFCell.CELL_TYPE_BOOLEAN:
-                            cellValue = cell.getBooleanCellValue() + "";
-                            break;
-                        // 公式
-                        case HSSFCell.CELL_TYPE_FORMULA:
-                            cellValue = cell.getCellFormula() + "";
-                            break;
-                        // 空值
-                        case HSSFCell.CELL_TYPE_BLANK:
-                            cellValue = "";
-                            break;
-                        // 故障
-                        case HSSFCell.CELL_TYPE_ERROR:
-                            cellValue = "非法字符";
-                            break;
-                        default:
-                            cellValue = "未知类型";
-                            break;
-                    }
+                // 以下是判断数据的类型
+                switch (cell.getCellType()) {
+                    // 数字
+                    case HSSFCell.CELL_TYPE_NUMERIC:
+                        cellValue = cell.getNumericCellValue() + "";
+                        break;
+                    // 字符串
+                    case HSSFCell.CELL_TYPE_STRING:
+                        cellValue = cell.getStringCellValue();
+                        break;
+                    // Boolean
+                    case HSSFCell.CELL_TYPE_BOOLEAN:
+                        cellValue = cell.getBooleanCellValue() + "";
+                        break;
+                    // 公式
+                    case HSSFCell.CELL_TYPE_FORMULA:
+                        cellValue = cell.getCellFormula() + "";
+                        break;
+                    // 空值
+                    case HSSFCell.CELL_TYPE_BLANK:
+                        cellValue = "";
+                        break;
+                    // 故障
+                    case HSSFCell.CELL_TYPE_ERROR:
+                        cellValue = "非法字符";
+                        break;
+                    default:
+                        cellValue = "未知类型";
+                        break;
                 }
 
                 rowLst.add(cellValue);
