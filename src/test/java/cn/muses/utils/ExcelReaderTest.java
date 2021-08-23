@@ -41,11 +41,11 @@ public class ExcelReaderTest {
      */
     public static void main(String[] args) throws Exception {
         IExcelReader poi = new CashValueExcelReader();
-        String inFilePath = "C:\\Users\\miaoqiang\\Desktop\\EPB利益演示.xlsx";
-        String outFilePath = "C:\\Users\\miaoqiang\\Desktop\\EPB利益演示.txt";
-        int sheetIndex = 1;
+        String inFilePath = "C:\\Users\\jervis\\Downloads\\臻享资料包\\9.横琴臻享一生养老年金保险_现金价值表（全表）.xlsx";
+        String outFilePath = "C:\\Users\\jervis\\Downloads\\臻享资料包\\9.横琴臻享一生养老年金保险_现金价值表（全表）.txt";
+        int sheetIndex = 0;
         int rowStartNum = 4;
-        int rowEndNum = 185530;
+        int rowEndNum = 130391;
         List<CashValueDTO> list = poi.parse(inFilePath, sheetIndex, rowStartNum, rowEndNum);
         Map<String, List<CashValueDTO>> format = (Map<String, List<CashValueDTO>>) poi.format(list);
         FileWriter fw = new FileWriter(outFilePath);

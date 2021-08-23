@@ -20,24 +20,24 @@ public class CashValueDTO implements Serializable {
      * 被保险人性别（M or F）
      */
     @Cell(cellnum = 0)
-    private String sex;
+    private Integer sex;
 
     /**
      * 投保时的年龄
      */
-    @Cell(cellnum = 1)
+    @Cell(cellnum = 2)
     private Integer age;
 
     /**
      * 交费年期 注：3代表三年期交
      */
-    @Cell(cellnum = 2)
+    @Cell(cellnum = 1)
     private Integer np;
 
     /**
      * 保险期间 注：88@ 表示保至88周岁
      */
-    @Cell(cellnum = 3)
+    @Cell(cellnum = 6)
     private String bp;
 
     /**
@@ -52,11 +52,17 @@ public class CashValueDTO implements Serializable {
     @Cell(cellnum = 5)
     private BigDecimal cv;
 
-    public String getSex() {
+    /**
+     * 领取年龄
+     */
+    @Cell(cellnum = 3)
+    private Integer ca;
+
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -98,6 +104,14 @@ public class CashValueDTO implements Serializable {
 
     public void setCv(BigDecimal cv) {
         this.cv = cv;
+    }
+
+    public Integer getCa() {
+        return ca;
+    }
+
+    public void setCa(Integer ca) {
+        this.ca = ca;
     }
 
     @Override

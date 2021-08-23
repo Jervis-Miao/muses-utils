@@ -30,11 +30,11 @@ public class CashValueExcelReader extends AbstractExcelReader<CashValueDTO, Map<
                 final String[] split1 = o2.split("-");
                 int compare = 0;
                 for (int i = 0; i < split.length; i++) {
-                    if (i == 0 || i == split.length - 1) {
-                        compare = Integer.valueOf(split[i]).compareTo(Integer.valueOf(split1[i]));
-                    } else {
-                        compare = split[i].compareTo(split1[i]);
-                    }
+                    // if (i == 0 || i == split.length - 1) {
+                    compare = Integer.valueOf(split[i]).compareTo(Integer.valueOf(split1[i]));
+                    // } else {
+                    // compare = split[i].compareTo(split1[i]);
+                    // }
                     if (0 != compare) {
                         return compare;
                     }
@@ -43,10 +43,10 @@ public class CashValueExcelReader extends AbstractExcelReader<CashValueDTO, Map<
             }
         });
         data.forEach(d -> {
-            if (d.getAge() <= 55) {
-                String key =
-                    new StringBuilder(d.getNp().toString()).append("-").append(d.getBp()).append("-").append(d.getSex())
-                        .append("-").append(d.getAge()).toString();
+            final Integer np = d.getNp();
+            if (!(np.equals(4) || np.equals(9) || np.equals(19))) {
+                String key = new StringBuilder(d.getSex().toString()).append("-").append(np).append("-")
+                    .append(d.getAge()).append("-").append(d.getCa()).toString();
                 List<CashValueDTO> categorized;
                 if (null == (categorized = dataMap.get(key))) {
                     categorized = new ArrayList<>(64);

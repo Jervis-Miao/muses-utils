@@ -11,11 +11,13 @@ import java.util.List;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import cn.muses.utils.file.read.IFileRead;
+
 /**
  * @author miaoqiang
  * @date 2020/7/2.
  */
-public interface IExcelReader<T, R> {
+public interface IExcelReader<T, R> extends IFileRead {
 
     /**
      * 读取Excel，并逐行转化为对象
@@ -35,7 +37,7 @@ public interface IExcelReader<T, R> {
      * @return
      */
     public default R format(List<T> data) {
-        return (R) data.toString();
+        return (R)data.toString();
     }
 
     /**

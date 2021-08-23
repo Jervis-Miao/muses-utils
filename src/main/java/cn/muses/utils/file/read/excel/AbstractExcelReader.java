@@ -74,19 +74,23 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
         return rows.stream().map(row -> {
             try {
                 Class type = GenericUtil.getSuperClassGenericType(this.getClass());
-                T instance = (T) type.newInstance();
+                T instance = (T)type.newInstance();
                 final Field[] fields = type.getDeclaredFields();
                 for (int i = 0; i < fields.length; i++) {
                     final Field field = fields[i];
+                    // 获取文档中指定的单元格信息，没有或者为空则循环
+                    final String cellValue;
                     final cn.muses.utils.file.read.excel.Cell annotation =
                         field.getAnnotation(cn.muses.utils.file.read.excel.Cell.class);
-                    if (annotation == null) {
+                    int index;
+                    if (annotation == null || (index = annotation.cellnum()) >= row.size()
+                        || StringUtils.isBlank(cellValue = row.get(index))) {
                         continue;
                     }
+                    // 赋值对象
                     field.setAccessible(true);
-                    final Class<?> fieldType = field.getType();
-                    final String cellValue = row.get(annotation.cellnum());
                     Object value;
+                    final Class<?> fieldType = field.getType();
                     if (fieldType.isAssignableFrom(Integer.class)) {
                         if (StringUtils.isBlank(cellValue)) {
                             continue;
@@ -103,7 +107,7 @@ public abstract class AbstractExcelReader<T, R> implements IExcelReader<T, R> {
                         }
                         value = new BigDecimal(cellValue);
                     } else if (fieldType.isAssignableFrom(String.class)) {
-                            value = cellValue;
+                        value = cellValue;
                     } else {
                         continue;
                     }
