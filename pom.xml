@@ -21,13 +21,13 @@
         <repository>
             <id>ins-inner</id>
             <name>新一站 Release 仓库</name>
-            <url>http://maven.mic.com/nexus/content/repositories/ins-releases/
+            <url>http://maven.vemic.com/nexus/content/repositories/ins-releases/
             </url>
         </repository>
         <snapshotRepository>
             <id>ins-inner</id>
             <name>新一站 Snapshot 仓库</name>
-            <url>http://maven.mic.com/nexus/content/repositories/ins-snapshots/
+            <url>http://maven.vemic.com/nexus/content/repositories/ins-snapshots/
             </url>
         </snapshotRepository>
     </distributionManagement>
