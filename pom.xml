@@ -90,6 +90,13 @@
             <artifactId>jackson-module-jaxb-annotations</artifactId>
         </dependency>
 
+        <!-- openjdk -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.10</version>
+        </dependency>
+
         <!-- test -->
         <dependency>
             <groupId>junit</groupId>
