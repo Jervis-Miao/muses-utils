@@ -20,7 +20,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 /**
  * 简单封装Jackson，实现JSON String<->Java Object的Mapper.
  *
- * 封装不同的输出风格, 使用不同的builder函数创建实例.
+ * 封装不同的输出风格, public class OrikaConfig {使用不同的builder函数创建实例.
  *
  * @author calvin
  * @author Khan 构造器添加基于已有的 objectMapper 实现
