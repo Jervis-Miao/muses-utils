@@ -19,10 +19,10 @@ import cn.muses.utils.json.JsonMapper;
  * @author miaoqiang
  * @date 2022/7/5.
  */
-public class MatchUtils {
-    private static final Logger logger = LoggerFactory.getLogger(MatchUtils.class);
+public class PatternMatchUtils {
+    private static final Logger logger = LoggerFactory.getLogger(PatternMatchUtils.class);
 
-    private MatchUtils() {}
+    private PatternMatchUtils() {}
 
     /**
      * 正则匹配提取
@@ -87,7 +87,7 @@ public class MatchUtils {
 
     public static void main(String[] args) {
         String str = "aklsdfjlkasdfj#{123}lkd#{456}sajf#{xxx}lkasdjflk";
-        List<String> extractions = MatchUtils.extractionAll(str, "\\#\\{([\\S].+?)\\}");
+        List<String> extractions = PatternMatchUtils.extractionAll(str, "\\#\\{([\\S].+?)\\}");
         System.out.println(new JsonMapper().toJson(extractions));
     }
 }
