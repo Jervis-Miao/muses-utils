@@ -87,7 +87,7 @@ public class PatternMatchUtils {
 
     public static void main(String[] args) {
         String str = "aklsdfjlkasdfj#{123}lkd#{456}sajf#{xxx}lkasdjflk";
-        List<String> extractions = PatternMatchUtils.extractionAll(str, "\\#\\{([\\S].+?)\\}");
+        List<String> extractions = PatternMatchUtils.extractionAll(str, "#\\{([\\S].+?)\\}");
         System.out.println(new JsonMapper().toJson(extractions));
     }
 }
