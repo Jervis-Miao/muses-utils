@@ -41,8 +41,9 @@ public class BankCardGenerator {
     public static final String[] VOYAGER_PREFIX_LIST = new String[] {"8699"};
 
     static String strrev(String str) {
-        if (str == null)
+        if (str == null) {
             return "";
+        }
         String revstr = "";
         for (int i = str.length() - 1; i >= 0; i--) {
             revstr += str.charAt(i);
